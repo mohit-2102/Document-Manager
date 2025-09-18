@@ -35,28 +35,3 @@ function Navbar({ onAddClick, onSearchChange }) {
 }
 export default Navbar
 
-
-// import { px } from 'framer-motion'
-// import React from 'react'
-// import { LuPlus } from "react-icons/lu"
-
-// function Navbar({ onAddClick }) {
-//   return (
-//     <nav className='fixed top-0 left-0 w-full h-16 bg-zinc-900/90 flex items-center justify-around px-6 z-50 shadow-md'>
-//       {/* App name */}
-      
-//       <h1 className='text-white text-xl flex items-center gap-2 font-semibold'>
-//        <img src="/logo.png" className='rounded-full' width={40} height={40} alt="logo" /> DocuHub</h1>
-
-//       {/* Plus button */}
-//       <button 
-//         onClick={onAddClick} 
-//         className='w-10 h-10 bg-sky-600 rounded-full cursor-pointer flex items-center justify-center text-white hover:bg-sky-500 transition'
-//       >
-//         <LuPlus size={24} />
-//       </button>
-//     </nav>
-//   )
-// }
-
-// export default Navbar

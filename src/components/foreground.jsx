@@ -37,6 +37,7 @@ function Foreground() {
     };
 
     const handleRemove = (id) => {
+        confirm("Are you sure you want to delete this document?") && 
         setData((prev) => prev.filter((item) => item.id !== id));
     };
 
@@ -59,7 +60,7 @@ function Foreground() {
 
             <div
                 ref={ref}
-                className="fixed top-17 left-2 right-2 bottom-2 z-[3] flex flex-wrap gap-5 p-2 overflow-y-scroll overflow-x-hidden scrollbar"
+                className="fixed top-17 left-2 right-2 bottom-2 z-[3] flex flex-wrap gap-5 p-2 overflow-y-auto overflow-x-hidden scrollbar"
             >
                 {showForm && (
                     <Form
@@ -90,57 +91,3 @@ function Foreground() {
 }
 
 export default Foreground;
-
-
-// import React, { useRef, useState, useEffect } from "react";
-// import Card from "./card";
-// import Navbar from "./Navbar";
-// import Form from "./Form";
-
-// function Foreground() {
-//   const [data, setData] = useState(() => {
-//     const stored = localStorage.getItem("docsData");
-//     return stored ? JSON.parse(stored) : [];
-//   });
-
-//   useEffect(() => {
-//     localStorage.setItem("docsData", JSON.stringify(data));
-//   }, [data]);
-
-//   const [showForm, setShowForm] = useState(false);
-//   const ref = useRef(null);
-
-//   const handleAdd = (newData) => {
-//     setData((prev) => [...prev, newData]);
-//   };
-
-//   const handleRemove = (id) => {
-//     setData((prev) => prev.filter((item) => item.id !== id));
-//   };
-
-//   return (
-//     <>
-//       <Navbar onAddClick={() => setShowForm(true)} />
-
-//       <div
-//         ref={ref}
-//         className="fixed top-17 left-2 right-2 bottom-2 z-[3] flex flex-wrap gap-5 p-2 overflow-y-scroll overflow-x-hidden scrollbar"
-//       >
-//         {showForm && (
-//           <Form onAdd={handleAdd} onClose={() => setShowForm(false)} />
-//         )}
-//         {data.map((item) => (
-//           <Card
-//             key={item.id}
-//             data={item}
-//             reference={ref}
-//             onRemove={() => handleRemove(item.id)}
-//           />
-//         ))}
-//       </div>
-//     </>
-//   );
-// }
-
-// export default Foreground;
-
