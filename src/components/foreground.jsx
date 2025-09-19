@@ -4,6 +4,7 @@ import Card from "./card";
 import Navbar from "./Navbar";
 import Form from "./Form";
 import { db } from "../config/db";
+import { starFilter } from "../utils/fileUtils";
 
 function Foreground() {
   const [docs, setDocs] = useState([]);
@@ -33,12 +34,18 @@ function Foreground() {
   };
 
   const filteredDocs = docs.filter((doc) => {
-    const query = searchQuery.toLowerCase();
-    return (
-      doc.desc.toLowerCase().includes(query) ||
-      doc.extension.toLowerCase().includes(query)
-    );
-  });
+  const query = searchQuery.toLowerCase();
+  const isStarred = localStorage.getItem(`starred-card-${doc.id}`) === "true";
+
+  // If user searches "starred", return only starred docs
+  if (starFilter.includes(query)) return isStarred;
+
+  return (
+    doc.desc.toLowerCase().includes(query) ||
+    doc.extension.toLowerCase().includes(query)
+  );
+});
+
 
   return (
     <>

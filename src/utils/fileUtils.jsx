@@ -43,3 +43,5 @@ export function getFileIcon(extension) {
 
   return map[ext] || { icon: "📁", label: "Unknown File" };
 }
+
+export const starFilter = ["star", "str", "imp", "important"].map((s) => s.toLowerCase());
