@@ -1,6 +1,6 @@
 // Form.jsx
 import React, { useState, useEffect, useRef } from "react";
-import { formatFileSize, getFileExtension } from "../utils/fileUtils";
+import { formatFileSize, getFileExtension } from "../utils/fileUtils.jsx";
 import { db } from "../config/db";
 
 function Form({ onClose, initialData }) {

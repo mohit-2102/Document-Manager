@@ -1,3 +1,5 @@
+import React from "react"
+
 // Format file size dynamically
 export function formatFileSize(sizeInBytes) {
   if (sizeInBytes < 1024) return sizeInBytes + " B";
@@ -33,6 +35,10 @@ export function getFileIcon(extension) {
     zip: { icon: "🗂️", label: ".zip" },
     rar: { icon: "🗂️", label: ".rar" },
     exe: { icon: "🗂️", label: ".exe" },
+    js: { icon: <img src="/js.png" width={18}  alt="" /> , label: ".js" },
+    jsx: { icon: <img src="/jsx.png" width={18} alt="" />, label: ".jsx" },
+    html: { icon: <img src="/html.png" width={18} alt="" />, label: ".html" },
+    css: { icon: <img src="/css.png" width={18} alt="" />, label: ".css" },
   };
 
   return map[ext] || { icon: "📁", label: "Unknown File" };

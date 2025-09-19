@@ -1,4 +1,4 @@
-// Foreground.jsx
+// Foreground.jsx - Grid Layout Solution
 import React, { useState, useEffect, useRef } from "react";
 import Card from "./card";
 import Navbar from "./Navbar";
@@ -46,7 +46,9 @@ function Foreground() {
 
       <div
         ref={ref}
-        className="fixed top-17 left-2 right-2 bottom-2 z-[3] flex flex-wrap gap-5 p-2 overflow-y-auto overflow-x-hidden scrollbar"
+        className="fixed top-17 left-2 right-2 bottom-2 z-[3] p-2 overflow-y-auto overflow-x-hidden scrollbar
+                   grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 
+                   gap-3 auto-rows-max content-start"
       >
         {showForm && (
           <Form
@@ -77,5 +79,4 @@ function Foreground() {
 }
 
 export default Foreground;
-
 
