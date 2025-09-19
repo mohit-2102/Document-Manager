@@ -1,3 +1,4 @@
+// Card.jsx
 import React, { useEffect, useState } from "react";
 import { LuDownload } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
@@ -10,30 +11,17 @@ function Card({ data, reference, onRemove, onEdit }) {
   const storageKey = `starred-card-${data.id}`;
   const [isStarred, setIsStarred] = useState(false);
   const [fileURL, setFileURL] = useState(null);
-  
 
-  // Restore starred state
   useEffect(() => {
     const saved = localStorage.getItem(storageKey);
     if (saved === "true") setIsStarred(true);
   }, [storageKey]);
 
-  // Build Blob URL from Base64
+  // Build Blob URL from IndexedDB file
   useEffect(() => {
-    if (data.file?.data) {
-      const byteString = atob(data.file.data.split(",")[1]);
-      const mimeString = data.file.type;
-      const ab = new ArrayBuffer(byteString.length);
-      const ia = new Uint8Array(ab);
-
-      for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-      }
-
-      const blob = new Blob([ab], { type: mimeString });
-      const url = URL.createObjectURL(blob);
+    if (data.file) {
+      const url = URL.createObjectURL(data.file);
       setFileURL(url);
-
       return () => URL.revokeObjectURL(url);
     }
   }, [data.file]);
@@ -44,6 +32,21 @@ function Card({ data, reference, onRemove, onEdit }) {
     localStorage.setItem(storageKey, newValue);
   };
 
+  const handleDownload = () => {
+    const confirmDownload = confirm("Are You sure you want to download the file?")
+    if(!confirmDownload) {
+        e.preventDefault();
+        return ;
+    }
+
+    const a = document.createElement("a");
+    a.href = fileURL;
+    a.download = data.file.name;
+    a.click();
+    url.revokeObjectURL(fileURL)
+  }
+
+
   const { icon, label } = getFileIcon(data.extension);
 
   return (
@@ -52,14 +55,11 @@ function Card({ data, reference, onRemove, onEdit }) {
       dragConstraints={reference}
       whileDrag={{ scale: 1.1 }}
       dragMomentum={true}
-      dragTransition={{
-        bounceStiffness: 150,
-        bounceDamping: 20,
-      }}
+      dragTransition={{ bounceStiffness: 150, bounceDamping: 20 }}
       className="relative flex-shrink-0 w-42 h-58 sm:w-52 sm:h-65 rounded-[40px] bg-zinc-900/90 text-white px-4 sm:px-6 py-8 overflow-hidden"
     >
       <span className="flex items-center justify-between gap-2">
-        {icon} {label} 
+        {icon} {label}
         <span className="flex items-center justify-center gap-2">
           <span onClick={starToggle} className="cursor-pointer">
             {isStarred ? <FaStar color="yellow" /> : <FaRegStar />}
@@ -87,18 +87,12 @@ function Card({ data, reference, onRemove, onEdit }) {
             </span>
 
             {fileURL && (
-              <a
-                href={fileURL}
-                download={data.file.name}
-                onclick={(e)=>{
-                    const confirmDelete = confirm("Are you sure you want to download this file?")
-                    if(!confirmDelete) e.preventDefault();
-                    }
-                }
+              <button
+                onClick={handleDownload}
                 className="w-6 h-6 bg-sky-600 rounded-full flex items-center justify-center cursor-pointer"
               >
                 <LuDownload size=".8em" />
-              </a>
+              </button>
             )}
           </span>
         </div>
@@ -117,5 +111,4 @@ function Card({ data, reference, onRemove, onEdit }) {
 }
 
 export default Card;
-
 

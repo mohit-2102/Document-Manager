@@ -32,6 +32,7 @@ export function getFileIcon(extension) {
     mp3: { icon: "🎵", label: ".mp3" },
     zip: { icon: "🗂️", label: ".zip" },
     rar: { icon: "🗂️", label: ".rar" },
+    exe: { icon: "🗂️", label: ".exe" },
   };
 
   return map[ext] || { icon: "📁", label: "Unknown File" };
