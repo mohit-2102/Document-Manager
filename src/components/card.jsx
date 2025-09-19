@@ -56,10 +56,10 @@ function Card({ data, reference, onRemove, onEdit }) {
         bounceStiffness: 150,
         bounceDamping: 20,
       }}
-      className="relative flex-shrink-0 w-52 sm:w-52 h-65 rounded-[40px] bg-zinc-900/90 text-white px-6 py-8 overflow-hidden"
+      className="relative flex-shrink-0 w-42 h-58 sm:w-52 sm:h-65 rounded-[40px] bg-zinc-900/90 text-white px-4 sm:px-6 py-8 overflow-hidden"
     >
       <span className="flex items-center justify-between gap-2">
-        {icon} {label}
+        {icon} {label} 
         <span className="flex items-center justify-center gap-2">
           <span onClick={starToggle} className="cursor-pointer">
             {isStarred ? <FaStar color="yellow" /> : <FaRegStar />}
@@ -76,7 +76,7 @@ function Card({ data, reference, onRemove, onEdit }) {
       <p className="text-xs mt-6 leading-tight">{data.desc}</p>
 
       <div className="footer absolute bottom-0 w-full left-0">
-        <div className="flex items-center justify-between px-6 py-2 my-1">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-2 my-1">
           <p className="text-xs">• {data.filesize}</p>
           <span className="flex items-center justify-center gap-2">
             <span

@@ -27,7 +27,7 @@ function Navbar({ onAddClick, onSearchChange }) {
         onClick={onAddClick} 
         className="w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-b from-blue-900/95 to-blue-950/95 rounded-full cursor-pointer flex items-center justify-center text-white hover:bg-sky-500 transition"
         >
-        <LuPlus size={18} className="sm:size-20" />
+        <LuPlus size={18} className="sm:size-8" />
       </button>
           </div>
     </nav>
