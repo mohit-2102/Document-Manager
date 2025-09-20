@@ -17,7 +17,7 @@ function Foreground() {
   useEffect(() => {
     const fetchDocs = async () => {
       const allDocs = await db.docs.toArray();
-      setDocs(allDocs);
+      setDocs(allDocs.reverse());
     };
     fetchDocs();
   }, []);
@@ -62,7 +62,7 @@ function Foreground() {
             onClose={() => {
               setShowForm(false);
               setEditingCard(null);
-              db.docs.toArray().then(setDocs); // reload after save
+              db.docs.toArray().then((allDocs)=> setDocs(allDocs.reverse())); // reload after save
             }}
             initialData={editingCard}
           />
