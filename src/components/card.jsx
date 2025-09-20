@@ -32,7 +32,7 @@ function Card({ data, reference, onRemove, onEdit }) {
         localStorage.setItem(storageKey, newValue);
     };
 
-    const handleDownload = () => {
+    const handleDownload = (e) => {
         const confirmDownload = confirm("Are You sure you want to download the file?")
         if (!confirmDownload) {
             e.preventDefault();
